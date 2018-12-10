@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import lombok.Data;
 @Data
 @Entity
-@Table(name="mannage_and_members")
+@Table(name="mannager_and_members")
 public class MannageAndMembers {
 	
 	@Id
@@ -23,6 +23,10 @@ public class MannageAndMembers {
 	@ManyToOne
 	@JoinColumn(name = "member")
 	private Member member;
+	
+	@ManyToOne
+	@JoinColumn(name = "mannage_members")
+	private MannageMembers mannageMembers;
 	
 	@ManyToOne
 	@JoinColumn(name = "access_level")

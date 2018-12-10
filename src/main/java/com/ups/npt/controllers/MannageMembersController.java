@@ -33,11 +33,11 @@ public class MannageMembersController {
 	
 	@PostMapping()
 	@ResponseBody()
-	public ResponseEntity<HttpStatus> saveMannageMembers(@RequestBody MannageMembers mannageMembers) {
+	public ResponseEntity<MannageMembers> saveMannageMembers(@RequestBody MannageMembers mannageMembers) {
 		try {
-			mannageMebersRepository.save(mannageMembers);
+			mannageMembers=mannageMebersRepository.save(mannageMembers);
 			log.debug("saved ok");
-			return new ResponseEntity<>(HttpStatus.OK); 
+			return new ResponseEntity<>(mannageMembers,HttpStatus.OK); 
 		}catch(Exception ex) {
 			log.error("Error while serving access level", ex);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

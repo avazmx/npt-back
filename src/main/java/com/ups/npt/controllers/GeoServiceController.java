@@ -40,11 +40,11 @@ public class GeoServiceController {
 	
 	@PostMapping()
 	@ResponseBody()
-	public ResponseEntity<HttpStatus> saveGeoService(@RequestBody GeoService geoService) {
+	public ResponseEntity<GeoService> saveGeoService(@RequestBody GeoService geoService) {
 		try {
-			geoServiceRepository.save(geoService);
+			geoService=geoServiceRepository.save(geoService);
 			log.debug("saved ok");
-			return new ResponseEntity<>(HttpStatus.OK); 
+			return new ResponseEntity<>(geoService,HttpStatus.OK); 
 		}catch(Exception ex) {
 			log.error("Error while serving access level", ex);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

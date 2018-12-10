@@ -25,11 +25,6 @@ public class MannageMembers {
 	private Community community;
 	
 	@ManyToOne
-	@JoinColumn(name = "access_level")
-	private AccessLevel accessLevel;
-	
-
-	@ManyToOne
 	@JoinColumn(name = "state_province")
 	private StateProvince stateProvince;
 	
@@ -38,5 +33,7 @@ public class MannageMembers {
 	
 	@Column(name="slic_range_high")
 	private int slicRangehigh;
+	
+	
 
 }

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ups.npt.model.Member;
 import com.ups.npt.repository.MemberRepository;
-import com.ups.npt.util.Response;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -25,8 +24,7 @@ public class MemberController {
 	@Autowired
 	private MemberRepository memberRepository;
 	
-	@Autowired
-	Response response;
+
 	
 	@GetMapping()
 	public List<Member> getMembers(){
@@ -35,11 +33,11 @@ public class MemberController {
 	
 	@PostMapping()
 	@ResponseBody()
-	public ResponseEntity<HttpStatus> saveMmeber(@RequestBody Member member) {
+	public ResponseEntity<Member> saveMmeber(@RequestBody Member member) {
 		try {
-			memberRepository.save(member);
+			member=memberRepository.save(member);
 			log.debug("saved ok");
-			return new ResponseEntity<>(HttpStatus.OK); 
+			return new ResponseEntity<>(member,HttpStatus.OK); 
 		}catch(Exception ex) {
 			log.error("Error while serving access level", ex);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

@@ -33,11 +33,11 @@ public class CommunityController {
 	
 	@PostMapping()
 	@ResponseBody()
-	public ResponseEntity<HttpStatus> saveCommunity(@RequestBody Community community) {
+	public ResponseEntity<Community> saveCommunity(@RequestBody Community community) {
 		try {
-			communityRepository.save(community);
+			community=communityRepository.save(community);
 			log.debug("saved ok");
-			return new ResponseEntity<>(HttpStatus.OK);
+			return new ResponseEntity<>(community,HttpStatus.OK);
 		}catch(Exception ex) {
 			log.error("Error while serving access level", ex);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

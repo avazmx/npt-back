@@ -31,11 +31,11 @@ public class DistrictController {
 	
 	@PostMapping()
 	@ResponseBody()
-	public ResponseEntity<HttpStatus> saveDistrict(@RequestBody District district) {
+	public ResponseEntity<District> saveDistrict(@RequestBody District district) {
 		try {
-			districtRepository.save(district);
+			district=districtRepository.save(district);
 			log.debug("saved ok");
-			   return new ResponseEntity<>(HttpStatus.OK); 
+			   return new ResponseEntity<>(district,HttpStatus.OK); 
 		}catch(Exception ex) {
 			log.error("Error while serving access level", ex);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

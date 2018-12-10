@@ -31,11 +31,11 @@ public class MemberAccessLevelController {
 	
 	@PostMapping()
 	@ResponseBody()
-	public ResponseEntity<HttpStatus> saveMemberAccessLevel(@RequestBody MemberAccessLevel memberAccess) {
+	public ResponseEntity<MemberAccessLevel> saveMemberAccessLevel(@RequestBody MemberAccessLevel memberAccess) {
 		try {
-			memberAccessLevelRepository.save(memberAccess);
+			memberAccess=memberAccessLevelRepository.save(memberAccess);
 			log.debug("saved ok");
-			return new ResponseEntity<>(HttpStatus.OK); 
+			return new ResponseEntity<>(memberAccess,HttpStatus.OK); 
 		}catch(Exception ex) {
 			log.error("Error while serving access level", ex);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

@@ -33,11 +33,11 @@ public class BussinesUnitController {
 	
 	@PostMapping()
 	@ResponseBody()
-	public ResponseEntity<HttpStatus> saveBussinesUnit(@RequestBody BussinesUnit bussinesUnit) {
+	public ResponseEntity<BussinesUnit> saveBussinesUnit(@RequestBody BussinesUnit bussinesUnit) {
 		try {
-			bussinesUnitRepository.save(bussinesUnit);
+			bussinesUnit=bussinesUnitRepository.save(bussinesUnit);
 			log.debug("saved ok");
-			return new ResponseEntity<>(HttpStatus.OK);
+			return new ResponseEntity<>(bussinesUnit,HttpStatus.OK);
 		}catch(Exception ex) {
 			log.error("Error while serving access level", ex);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

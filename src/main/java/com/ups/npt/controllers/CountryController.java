@@ -2,7 +2,6 @@ package com.ups.npt.controllers;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,12 +28,12 @@ public class CountryController {
 		return (List<Country>) countryRepository.findAll();
 	}
 	
-	@PostMapping("/save")
-	public ResponseEntity<HttpStatus> saveCountry(@RequestBody Country country) {
+	@PostMapping()
+	public ResponseEntity<Country> saveCountry(@RequestBody Country country) {
 	   try {
-		   countryRepository.save(country);
+		   country=countryRepository.save(country);
 		   log.debug("saved ok");
-		   return new ResponseEntity<>(HttpStatus.OK); 
+		   return new ResponseEntity<>(country,HttpStatus.OK); 
 	   }catch(Exception ex) {
 		   log.error("Error while serving access level", ex);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

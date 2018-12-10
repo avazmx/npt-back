@@ -32,11 +32,11 @@ public class AccessLevelController {
 	
 	@PostMapping()
 	@ResponseBody()
-	public ResponseEntity<HttpStatus> saveAccessLevel(@RequestBody AccessLevel accessLevel) {
+	public ResponseEntity<AccessLevel> saveAccessLevel(@RequestBody AccessLevel accessLevel) {
 		try {
-			accessLevelRepository.save(accessLevel);
+			accessLevel=accessLevelRepository.save(accessLevel);
 			log.debug("saved ok");
-			return new ResponseEntity<>(HttpStatus.OK);
+			return new ResponseEntity<>(accessLevel,HttpStatus.OK);
 		}catch(Exception ex) {
 			log.error("Error while serving access level", ex);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

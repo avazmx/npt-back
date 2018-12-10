@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ups.npt.model.GovernanceLevel;
 import com.ups.npt.repository.GovernanceLevelRepository;
-import com.ups.npt.util.Response;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -25,9 +24,6 @@ public class GovernanceLevelController {
 	@Autowired
 	GovernanceLevelRepository governanceLevelRepository;
 	
-	@Autowired
-	Response response;
-	
 	@GetMapping()
 	public List<GovernanceLevel> getGovernanceLevel(){
 		return (List<GovernanceLevel>) governanceLevelRepository.findAll();
@@ -35,11 +31,11 @@ public class GovernanceLevelController {
 	
 	@PostMapping()
 	@ResponseBody()
-	public ResponseEntity<HttpStatus> saveGovernanceLevel(@RequestBody GovernanceLevel governanceLevel) {
+	public ResponseEntity<GovernanceLevel> saveGovernanceLevel(@RequestBody GovernanceLevel governanceLevel) {
 		try {
-			governanceLevelRepository.save(governanceLevel);
+			governanceLevel=governanceLevelRepository.save(governanceLevel);
 			log.debug("saved ok");
-			return new ResponseEntity<>(HttpStatus.OK); 
+			return new ResponseEntity<>(governanceLevel,HttpStatus.OK); 
 		}catch(Exception ex) {
 			log.error("Error while serving access level", ex);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
