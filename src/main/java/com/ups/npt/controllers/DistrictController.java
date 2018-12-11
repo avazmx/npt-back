@@ -16,6 +16,7 @@ import com.ups.npt.model.District;
 import com.ups.npt.repository.DistrictRepositorty;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PathVariable;
 @Slf4j
 @RestController
 @RequestMapping("/district")
@@ -41,4 +42,18 @@ public class DistrictController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+        
+        @GetMapping("/{id}")
+        @ResponseBody
+	public District getDistrictlById(@PathVariable("id") Integer id){
+		return districtRepository.getDistrictlById(id);
+	}
+        
+        @GetMapping("/country/{id}")
+        @ResponseBody
+	public List<District> getDistrictslByCountryId(@PathVariable("id") Integer id){
+		return districtRepository.getDistrictslByCountryId(id);
+	}
+        
+
 }

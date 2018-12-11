@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="country")
-public class Country {
+public class Country implements java.io.Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,4 +20,14 @@ public class Country {
 	
 	@Column(name="name")
 	private String name;
+         
+	@Column(name="description")
+	private String description;
+        
+	@Column(name="code")
+	private String code;
+        
+        
+        
+        
 }

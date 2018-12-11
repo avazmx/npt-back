@@ -15,6 +15,8 @@ import com.ups.npt.model.Country;
 import com.ups.npt.repository.CountryRepository;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 @Slf4j
 @RestController
 @RequestMapping("/countries")
@@ -25,6 +27,7 @@ public class CountryController {
 
 	@GetMapping()
 	public List<Country> getCountries(){
+                System.out.println("magno");
 		return (List<Country>) countryRepository.findAll();
 	}
 	
@@ -40,4 +43,10 @@ public class CountryController {
 		}
 	}
 	
+        @GetMapping("/{id}")
+        @ResponseBody
+	public Country getCountryById(@PathVariable("id") Integer id){
+		return countryRepository.getCountryById(id);
+	}
+
 }

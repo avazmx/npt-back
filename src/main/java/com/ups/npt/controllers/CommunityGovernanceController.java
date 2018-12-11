@@ -15,6 +15,7 @@ import com.ups.npt.model.CommunityGovernance;
 import com.ups.npt.repository.CommunityGovernanceRepository;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PathVariable;
 @Slf4j
 @RestController
 @RequestMapping("/community/governance")
@@ -38,4 +39,12 @@ public class CommunityGovernanceController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+        
+        @GetMapping("/{id}")
+        @ResponseBody
+	public CommunityGovernance getAccessLevelById(@PathVariable("id") Integer id){
+		return communityGovernanceRepository.getcommunityGovernanceRepositoryById(id);
+	}
+        
+        
 }

@@ -16,6 +16,7 @@ import com.ups.npt.model.MannageMembers;
 import com.ups.npt.repository.MannageMembersRepository;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PathVariable;
 @Slf4j
 @RestController
 @RequestMapping("mannage/members")
@@ -42,5 +43,11 @@ public class MannageMembersController {
 			log.error("Error while serving access level", ex);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+        
+        @GetMapping("/{id}")
+        @ResponseBody
+	public MannageMembers getMannageMembersById(@PathVariable("id") Integer id){
+		return mannageMebersRepository.getMannageMembersById(id);
 	}
 }

@@ -8,8 +8,8 @@ import com.ups.npt.model.GeoService;
 
 public interface GeoServiceRepository  extends JpaRepository<GeoService, Integer> {
 	
-	@Query("from GeoService gs join gs.community c where c.id=:communityId")
-	public Iterable<GeoService> findByCategory(@Param("communityId") Integer id);
+    @Query("FROM GeoService gs WHERE gs.id= :id")
+    public GeoService getGeoServiceById(Integer id);
 	
 	
 }

@@ -16,6 +16,7 @@ import com.ups.npt.model.MemberAccessLevel;
 import com.ups.npt.repository.MemberAccessLevelRepository;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PathVariable;
 @Slf4j
 @RestController
 @RequestMapping("/member/access/level")
@@ -40,6 +41,12 @@ public class MemberAccessLevelController {
 			log.error("Error while serving access level", ex);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+        
+        @GetMapping("/{id}")
+        @ResponseBody
+	public MemberAccessLevel getMemberAccessLevelById(@PathVariable("id") Integer id){
+		return memberAccessLevelRepository.getMemberAccessLevelById(id);
 	}
 	
 }

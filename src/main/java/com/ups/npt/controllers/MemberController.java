@@ -16,6 +16,7 @@ import com.ups.npt.model.Member;
 import com.ups.npt.repository.MemberRepository;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PathVariable;
 @Slf4j
 @RestController
 @RequestMapping("/member")
@@ -43,5 +44,12 @@ public class MemberController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+        
+        @GetMapping("/{id}")
+        @ResponseBody
+	public Member getMemberById(@PathVariable("id") Integer id){
+		return memberRepository.getMemberById(id);
+	}
+
 
 }

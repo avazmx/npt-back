@@ -16,7 +16,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="district")
-public class District {
+public class District implements java.io.Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,7 +27,7 @@ public class District {
 	private String name;
 	
 	@ManyToOne
-    @JoinColumn(name="country", nullable=false)
+        @JoinColumn(name="country", nullable=false)
 	private Country country;
 
 	

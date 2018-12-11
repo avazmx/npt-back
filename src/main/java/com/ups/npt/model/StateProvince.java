@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 @Entity
 @Repository(value="state_province")
-public class StateProvince {
+public class StateProvince implements java.io.Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

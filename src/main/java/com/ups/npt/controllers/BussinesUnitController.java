@@ -16,6 +16,7 @@ import com.ups.npt.model.BussinesUnit;
 import com.ups.npt.repository.BussinesUnitRepository;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PathVariable;
 @Slf4j
 @RestController
 @RequestMapping("/bussines/unit")
@@ -42,6 +43,12 @@ public class BussinesUnitController {
 			log.error("Error while serving access level", ex);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+        
+        @GetMapping("/{id}")
+        @ResponseBody
+	public BussinesUnit getAccessLevelById(@PathVariable("id") Integer id){
+		return bussinesUnitRepository.getBussinesUnitById(id);
 	}
 	
 	

@@ -16,6 +16,7 @@ import com.ups.npt.model.AccessLevel;
 import com.ups.npt.repository.AccessLevelRepository;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PathVariable;
 @Slf4j
 @RestController
 @RequestMapping("/access/level")
@@ -26,7 +27,7 @@ public class AccessLevelController {
 	
 	
 	@GetMapping()
-	public List<AccessLevel> getBussinesUnit(){
+	public List<AccessLevel> getAccessLevel(){
 		return (List<AccessLevel>)accessLevelRepository.findAll();
 	}
 	
@@ -43,6 +44,13 @@ public class AccessLevelController {
 		}
 		
 	}
+        
+        @GetMapping("/{id}")
+        @ResponseBody
+	public AccessLevel getAccessLevelById(@PathVariable("id") Integer id){
+		return accessLevelRepository.getAccessLevelById(id);
+	}
+        
 	
 	
 	

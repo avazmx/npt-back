@@ -16,6 +16,7 @@ import com.ups.npt.model.GovernanceLevel;
 import com.ups.npt.repository.GovernanceLevelRepository;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PathVariable;
 @Slf4j
 @RestController
 @RequestMapping("/governance/level")
@@ -41,5 +42,12 @@ public class GovernanceLevelController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+        
+        @GetMapping("/{id}")
+        @ResponseBody
+	public GovernanceLevel getGovernanceLevelById(@PathVariable("id") Integer id){
+		return governanceLevelRepository.getGovernanceLevelById(id);
+	}
+
 
 }

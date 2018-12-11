@@ -32,10 +32,10 @@ public class GeoServiceController {
 		return (List<GeoService>) geoServiceRepository.findAll();
 	}
 	
-	@GetMapping("/{id}")
-	public List<GeoService> getGeoServicesByCommunityId(@PathVariable Integer id){
-		return (List<GeoService>) geoServiceRepository.findByCategory(id);
-	}
+//	@GetMapping("/{id}")
+//	public List<GeoService> getGeoServicesByCommunityId(@PathVariable Integer id){
+//		return (List<GeoService>) geoServiceRepository.findByCategory(id);
+//	}
 	
 	
 	@PostMapping()
@@ -50,6 +50,13 @@ public class GeoServiceController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+        
+        @GetMapping("/{id}")
+        @ResponseBody
+	public GeoService getGeoServiceById(@PathVariable("id") Integer id){
+		return geoServiceRepository.getGeoServiceById(id);
+	}
+
 	
 	
 	

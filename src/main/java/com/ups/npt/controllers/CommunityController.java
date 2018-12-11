@@ -16,6 +16,7 @@ import com.ups.npt.model.Community;
 import com.ups.npt.repository.CommunityRepository;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PathVariable;
 @Slf4j
 @RestController
 @RequestMapping("/community")
@@ -43,5 +44,12 @@ public class CommunityController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+        
+        @GetMapping("/{id}")
+        @ResponseBody
+	public Community getCommunityById(@PathVariable("id") Integer id){
+		return communityRepository.getCommunityById(id);
+	}
+
 
 }
