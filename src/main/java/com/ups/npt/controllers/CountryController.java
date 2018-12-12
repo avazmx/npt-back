@@ -27,7 +27,6 @@ public class CountryController {
 
 	@GetMapping()
 	public List<Country> getCountries(){
-                System.out.println("magno");
 		return (List<Country>) countryRepository.findAll();
 	}
 	

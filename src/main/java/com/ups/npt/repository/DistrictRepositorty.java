@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.ups.npt.model.District;
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 @Repository
 public interface DistrictRepositorty extends JpaRepository<District, Integer>{
@@ -14,6 +15,6 @@ public interface DistrictRepositorty extends JpaRepository<District, Integer>{
     public District getDistrictlById(Integer id);
 
     @Query("FROM District d WHERE d.country.id= :id")
-    public List<District> getDistrictslByCountryId(Integer id);
+    public List<District> getDistrictslByCountryId(@Param("id") Integer id);
 
 }
